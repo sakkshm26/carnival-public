@@ -12,21 +12,24 @@
         );
 
         const is_mobile = window.innerWidth <= 700;
+        let bot_visible = false;
 
         const styles = `
             #chat-iframe {
                 position: fixed;
-                bottom: 0px;
-                right: 0px;
+                bottom: 20px;
+                right: 20px;
                 border: 0px;
                 margin: 0px;
                 padding: 0px;
-                width: ${is_mobile ? "100%" : "450px"};
-                height: 700px;
+                width: auto;
+                height: auto;
                 border: none;
                 display: block;
                 outline: none;
                 z-index: 999999;
+                background: transparent;
+                transition: width 0.3s, height 0.3s;
             }
         `;
 
@@ -41,6 +44,18 @@
                     { chatbot_id, session_token },
                     "*"
                 );
+            } else if (event.data.toggle_bot) {
+                bot_visible = !bot_visible;
+                if (bot_visible) {
+                    chatIframe.style.width = is_mobile ? "100%" : "450px";
+                    chatIframe.style.height = "700px";
+                    chatIframe.style.bottom = is_mobile ? "0px" : "20px";
+                    chatIframe.style.right = is_mobile ? "0px" : "20px";
+                    // chatIframe.style.left = is_mobile ? "0px" : "auto";
+                } else {
+                    chatIframe.style.width = "auto";
+                    chatIframe.style.height = "auto";
+                }
             }
         });
     };
