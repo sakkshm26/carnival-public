@@ -16,10 +16,9 @@
 
         const styles = `
             #chat-iframe {
-                position: fixed;
-                bottom: 20px;
-                right: 20px;
-                border: 0px;
+                position: absolute;
+                bottom: 0px;
+                right: 0px;
                 margin: 0px;
                 padding: 0px;
                 width: auto;
@@ -41,17 +40,14 @@
         window.addEventListener("message", (event) => {
             if (event.data.ready) {
                 chatIframe.contentWindow.postMessage(
-                    { chatbot_id, session_token },
+                    { chatbot_id, session_token, is_mobile },
                     "*"
                 );
-            } else if (event.data.toggle_bot) {
-                bot_visible = !bot_visible;
+            } else if (event.data.bot_visible !== undefined) {
+                bot_visible = event.data.bot_visible;
                 if (bot_visible) {
-                    chatIframe.style.width = is_mobile ? "100%" : "450px";
-                    chatIframe.style.height = "700px";
-                    chatIframe.style.bottom = is_mobile ? "0px" : "20px";
-                    chatIframe.style.right = is_mobile ? "0px" : "20px";
-                    // chatIframe.style.left = is_mobile ? "0px" : "auto";
+                    chatIframe.style.width = is_mobile ? "100vw" : "450px";
+                    chatIframe.style.height = is_mobile ? "100vh" : "700px";
                 } else {
                     chatIframe.style.width = "auto";
                     chatIframe.style.height = "auto";
