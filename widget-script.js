@@ -13,10 +13,11 @@
 
         const is_mobile = window.innerWidth <= 700;
         let bot_visible = false;
+        const original_body_overflow = document.body.style.overflow;
 
         const styles = `
             #chat-iframe {
-                position: absolute;
+                position: fixed;
                 bottom: 0px;
                 right: 0px;
                 margin: 0px;
@@ -48,9 +49,15 @@
                 if (bot_visible) {
                     chatIframe.style.width = is_mobile ? "100vw" : "450px";
                     chatIframe.style.height = is_mobile ? "100vh" : "700px";
+                    if (is_mobile) {
+                        document.body.style.overflow = "hidden";
+                    }
                 } else {
                     chatIframe.style.width = "auto";
                     chatIframe.style.height = "auto";
+                    if (is_mobile) {
+                        document.body.style.overflow = original_body_overflow;
+                    }
                 }
             }
         });
