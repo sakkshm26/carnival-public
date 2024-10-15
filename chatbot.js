@@ -49,7 +49,7 @@
                 bot_visible = event.data.bot_visible;
                 if (bot_visible) {
                     chatIframe.style.width = is_mobile ? "100vw" : "450px";
-                    chatIframe.style.height = is_mobile ? "100vh" : "700px";
+                    chatIframe.style.height = is_mobile ? "100%" : "700px";
                     if (is_mobile) {
                         document.body.style.overflow = "hidden";
                     }
