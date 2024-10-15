@@ -29,6 +29,7 @@
                 outline: none;
                 z-index: 999999;
                 background: transparent;
+                color-scheme: none;
                 transition: width 0.3s, height 0.3s;
             }
         `;
