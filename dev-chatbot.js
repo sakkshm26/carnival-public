@@ -8,7 +8,7 @@
         chatIframe.setAttribute("id", "chat-iframe");
         chatIframe.setAttribute(
             "src",
-            `https://chatbot.turtlex.in/${chatbot_id}/bot`
+            `https://dev-chatbot.turtlex.in/${chatbot_id}/bot`
         );
 
         const is_mobile = window.innerWidth <= 700;
