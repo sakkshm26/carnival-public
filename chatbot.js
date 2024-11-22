@@ -23,7 +23,7 @@
                 margin: 0px;
                 padding: 0px;
                 width: auto;
-                height: -webkit-fill-available;
+                height: 300px;
                 border: none;
                 display: block;
                 outline: none;
