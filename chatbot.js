@@ -23,7 +23,7 @@
                 margin: 0px;
                 padding: 0px;
                 width: auto;
-                height: 300px;
+                height: 200px;
                 border: none;
                 display: block;
                 outline: none;
