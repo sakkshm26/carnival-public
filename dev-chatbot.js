@@ -5,61 +5,103 @@
 
     window.bot.init = function ({ chatbot_id, access_token }) {
         const chatIframe = document.createElement("iframe");
-        chatIframe.setAttribute("id", "chat-iframe");
+        chatIframe.setAttribute("id", "turtle-chat-iframe");
         chatIframe.setAttribute(
             "src",
             `https://dev-chatbot.turtlex.in/${chatbot_id}/bot`
         );
+
+        const toggleIframe = document.createElement("iframe");
+        toggleIframe.setAttribute("id", "turtle-toggle-iframe");
+        toggleIframe.setAttribute(
+            "src",
+            `https://dev-chatbot.turtlex.in/${chatbot_id}/toggle-button`
+        );
+
+        const mainDiv = document.createElement("div");
+        mainDiv.setAttribute("id", "turtle-chatbot-container");
+        mainDiv.appendChild(chatIframe);
+        mainDiv.appendChild(toggleIframe);
 
         const is_mobile = window.innerWidth <= 700;
         let bot_visible = false;
         const original_body_overflow = document.body.style.overflow;
 
         const styles = `
-            #chat-iframe {
+            #turtle-chat-iframe {
                 position: fixed;
-                bottom: 0px;
-                right: 0px;
+                bottom: 90px;
+                right: 20px;
                 margin: 0px;
                 padding: 0px;
                 width: auto;
-                height: 200px;
+                height: 0px;
                 border: none;
                 display: block;
                 outline: none;
                 z-index: 999999;
                 background: transparent;
                 color-scheme: none;
-                transition: width 0.3s, height 0.3s;
+                transition: opacity 0.3s;
+            }
+
+            #turtle-toggle-iframe {
+                display: block;
+                position: fixed;
+                bottom: 15px;
+                right: 15px;
+                width: 60px;
+                height: 60px;
+                border: none;
+                z-index: 999999;
             }
         `;
 
         const styleElement = document.createElement("style");
         styleElement.textContent = styles;
         document.head.appendChild(styleElement);
-        document.body.appendChild(chatIframe);
+        document.body.appendChild(mainDiv);
 
         window.addEventListener("message", (event) => {
             if (event.data.ready) {
                 chatIframe.contentWindow.postMessage(
-                    { access_token, is_mobile },
+                    { access_token, is_mobile, type: "initial" },
                     "*"
                 );
             } else if (event.data.bot_visible !== undefined) {
                 bot_visible = event.data.bot_visible;
                 if (bot_visible) {
                     chatIframe.style.width = is_mobile ? "100vw" : "450px";
-                    chatIframe.style.height = is_mobile ? "100%" : "700px";
+                    chatIframe.style.height = is_mobile ? "100%" : "650px";
+                    chatIframe.style.bottom = is_mobile ? "0px" : "90px";
+                    chatIframe.style.right = is_mobile ? "0px" : "20px";
+                    toggleIframe.style.display = is_mobile ? "none" : "block";
                     if (is_mobile) {
                         document.body.style.overflow = "hidden";
                     }
                 } else {
                     chatIframe.style.width = "auto";
-                    chatIframe.style.height = "auto";
+                    chatIframe.style.height = "0px";
+                    chatIframe.style.bottom = "90px";
+                    chatIframe.style.right = "20px";
+                    toggleIframe.style.display = "block";
                     if (is_mobile) {
                         document.body.style.overflow = original_body_overflow;
                     }
                 }
+                if (event.data.source === "chat-iframe") {
+                    toggleIframe.contentWindow.postMessage(
+                        { type: "toggle", bot_visible },
+                        "*"
+                    );
+                } else if (event.data.source === "toggle-iframe") {
+                    chatIframe.contentWindow.postMessage(
+                        { type: "toggle", bot_visible },
+                        "*"
+                    );
+                }
+            } else if (event.data.resize_height) {
+               chatIframe.style.height = `${event.data.resize_height}px`;
             }
         });
     };
