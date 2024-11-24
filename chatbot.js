@@ -30,11 +30,11 @@
         const styles = `
             #turtle-chat-iframe {
                 position: fixed;
-                bottom: 90px;
+                bottom: 85px;
                 right: 20px;
                 margin: 0px;
                 padding: 0px;
-                width: auto;
+                width: 250px;
                 height: 0px;
                 border: none;
                 display: block;
@@ -80,7 +80,7 @@
                         document.body.style.overflow = "hidden";
                     }
                 } else {
-                    chatIframe.style.width = "auto";
+                    chatIframe.style.width = "250px";
                     chatIframe.style.height = "0px";
                     chatIframe.style.bottom = "90px";
                     chatIframe.style.right = "20px";
@@ -100,8 +100,17 @@
                         "*"
                     );
                 }
-            } else if (event.data.resize_height) {
-               chatIframe.style.height = `${event.data.resize_height}px`;
+            } else if (event.data.change_size) {
+                if (event.data.resize_height !== undefined) {
+                    chatIframe.style.height = `${event.data.resize_height}px`;
+                }
+                if (event.data.resize_width !== undefined) {
+                    chatIframe.style.width = `${
+                        event.data.resize_width === 0
+                            ? 250
+                            : event.data.resize_width
+                    }px`;
+                }
             }
         });
     };
