@@ -54,6 +54,8 @@
                 height: 60px;
                 border: none;
                 z-index: 999999;
+                background: transparent;
+                color-scheme: none;
             }
         `;
 
