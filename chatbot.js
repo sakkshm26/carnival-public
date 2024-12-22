@@ -113,6 +113,15 @@
                             : event.data.resize_width
                     }px`;
                 }
+            } else if (event.data.notification_count !== undefined) {
+                toggleIframe.contentWindow.postMessage(
+                    { notification_count: event.data.notification_count },
+                    "*"
+                );
+                chatIframe.contentWindow.postMessage(
+                    { notification_count: event.data.notification_count },
+                    "*"
+                );
             }
         });
     };
