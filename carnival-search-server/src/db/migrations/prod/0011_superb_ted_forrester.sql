@@ -1,0 +1,1 @@
+ALTER TABLE "org_user_map" ADD COLUMN "description" text;

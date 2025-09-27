@@ -1,0 +1,1 @@
+ALTER TABLE "user_conversation_message" ADD COLUMN "liked" boolean;--> statement-breakpoint

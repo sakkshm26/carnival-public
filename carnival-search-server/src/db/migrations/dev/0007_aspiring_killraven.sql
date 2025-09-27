@@ -1,0 +1,1 @@
+ALTER TABLE "user_connector" ADD COLUMN "connected" boolean DEFAULT false NOT NULL;

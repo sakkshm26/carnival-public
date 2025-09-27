@@ -1,0 +1,1 @@
+ALTER TABLE "user_conversation_message" ADD COLUMN "documents" jsonb DEFAULT '[]'::jsonb NOT NULL;

@@ -1,0 +1,1 @@
+ALTER TYPE "public"."app_type_enum" ADD VALUE 'confluence';

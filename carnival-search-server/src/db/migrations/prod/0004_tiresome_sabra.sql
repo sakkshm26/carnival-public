@@ -1,0 +1,2 @@
+ALTER TABLE "document_chunk" ADD COLUMN "fk_chunk_connector" uuid NOT NULL;--> statement-breakpoint
+ALTER TABLE "document_chunk" ADD CONSTRAINT "document_chunk_fk_chunk_connector_connector_id_fk" FOREIGN KEY ("fk_chunk_connector") REFERENCES "public"."connector"("id") ON DELETE no action ON UPDATE no action;

@@ -1,0 +1,1 @@
+ALTER TABLE "connector" ADD COLUMN "credentials_data" jsonb;

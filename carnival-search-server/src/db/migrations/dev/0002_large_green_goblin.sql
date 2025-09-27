@@ -1,0 +1,1 @@
+ALTER TABLE "user_connector" RENAME COLUMN "data" TO "credentials_data";

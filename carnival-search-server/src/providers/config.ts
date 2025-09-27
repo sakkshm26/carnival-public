@@ -1,0 +1,38 @@
+import dotenv from "dotenv";
+dotenv.config();
+
+export const config = {
+    port: process.env.PORT || 4000,
+    db_username: process.env.DB_USERNAME || (() => { throw new Error("Missing DB_USERNAME in env") })(),
+    db_password: process.env.DB_PASSWORD,
+    db_host: process.env.DB_HOST || (() => { throw new Error("Missing DB_HOST in env") })(),
+    db_port: Number(process.env.DB_PORT) || (() => { throw new Error("Missing DB_PORT in env") })(),
+    db_name: process.env.DB_NAME,
+    node_env: process.env.NODE_ENV || (() => { throw new Error("Missing NODE_ENV in env") })(),
+    frontend_app_url: process.env.FRONTEND_APP_URL || (() => { throw new Error("Missing FRONTEND_APP_URL in env") })(),
+    admin_app_url: process.env.ADMIN_APP_URL || (() => { throw new Error("Missing ADMIN_APP_URL in env") })(),
+    vector_server_url: process.env.VECTOR_SERVER_URL || (() => { throw new Error("Missing VECTOR_SERVER_URL in env") })(),
+    google_client_id: process.env.GOOGLE_CLIENT_ID || (() => { throw new Error("Missing GOOGLE_CLIENT_ID in env") })(),
+    google_client_secret: process.env.GOOGLE_CLIENT_SECRET || (() => { throw new Error("Missing GOOGLE_CLIENT_SECRET in env") })(),
+    google_redirect_uri: process.env.GOOGLE_REDIRECT_URI || (() => { throw new Error("Missing GOOGLE_REDIRECT_URI in env") })(),
+    google_auth_redirect_uri: process.env.GOOGLE_AUTH_REDIRECT_URI || (() => { throw new Error("Missing GOOGLE_AUTH_REDIRECT_URI in env") })(),
+    slack_client_id: process.env.SLACK_CLIENT_ID || (() => { throw new Error("Missing SLACK_CLIENT_ID in env") })(),
+    slack_client_secret: process.env.SLACK_CLIENT_SECRET || (() => { throw new Error("Missing SLACK_CLIENT_SECRET in env") })(),
+    slack_redirect_uri: process.env.SLACK_REDIRECT_URI || (() => { throw new Error("Missing SLACK_REDIRECT_URI in env") })(),
+    salesforce_client_id: process.env.SALESFORCE_CLIENT_ID || (() => { throw new Error("Missing SALESFORCE_CLIENT_ID in env") })(),
+    salesforce_client_secret: process.env.SALESFORCE_CLIENT_SECRET || (() => { throw new Error("Missing SALESFORCE_CLIENT_SECRET in env") })(),
+    salesforce_redirect_uri: process.env.SALESFORCE_REDIRECT_URI || (() => { throw new Error("Missing SALESFORCE_REDIRECT_URI in env") })(),
+    atlassian_client_id: process.env.ATLASSIAN_CLIENT_ID || (() => { throw new Error("Missing ATLASSIAN_CLIENT_ID in env") })(),
+    atlassian_client_secret: process.env.ATLASSIAN_CLIENT_SECRET || (() => { throw new Error("Missing ATLASSIAN_CLIENT_SECRET in env") })(),
+    atlassian_redirect_uri: process.env.ATLASSIAN_REDIRECT_URI || (() => { throw new Error("Missing ATLASSIAN_REDIRECT_URI in env") })(),
+    server_key: process.env.SERVER_KEY || (() => { throw new Error("Missing SERVER_KEY in env") })(),
+    index_queue: process.env.INDEX_QUEUE || (() => { throw new Error("Missing INDEX_QUEUE in env") })(),
+    add_vector_entity_queue: process.env.ADD_VECTOR_ENTITY_QUEUE || (() => { throw new Error("Missing ADD_VECTOR_ENTITY_QUEUE in env") })(),
+    delete_vector_entity_queue: process.env.DELETE_VECTOR_ENTITY_QUEUE || (() => { throw new Error("Missing DELETE_VECTOR_ENTITY_QUEUE in env") })(),
+    redis_host: process.env.REDIS_HOST || (() => { throw new Error("Missing REDIS_HOST in env") })(),
+    redis_port: Number(process.env.REDIS_PORT) || (() => { throw new Error("Missing REDIS_PORT in env") })(),
+    default_reindex_interval: Number(process.env.DEFAULT_REINDEX_INTERVAL) || (() => { throw new Error("Missing DEFAULT_REINDEX_INTERVAL in env") })(),
+    openai_api_key: process.env.OPENAI_API_KEY || (() => { throw new Error("Missing OPENAI_API_KEY in env") })(),
+    milvus_uri: process.env.MILVUS_URI || (() => { throw new Error("Missing MILVUS_URI in env") })(),
+    milvus_token: process.env.MILVUS_TOKEN || (() => { throw new Error("Missing MILVUS_TOKEN in env") })()
+}

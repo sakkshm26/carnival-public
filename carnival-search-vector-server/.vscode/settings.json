@@ -1,0 +1,10 @@
+{
+    "python.analysis.extraPaths": ["./env1/lib/python3.10/site-packages"],
+    "python.defaultInterpreterPath": "./env1/bin/python",
+    "python.terminal.activateEnvironment": true,
+    "editor.formatOnType": true,
+    "editor.defaultFormatter": "KevinRose.vsc-python-indent",
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    }
+}
